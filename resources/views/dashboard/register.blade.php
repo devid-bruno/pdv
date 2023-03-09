@@ -1,23 +1,60 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.header')
 
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="apple-touch-icon" sizes="76x76" href="{{asset('img/apple-icon.png')}}">
-  <link rel="icon" type="image/png" href="{{asset('img/favicon.png')}}">
-  <title>
-    Corporate UI by Creative Tim
-  </title>
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|Noto+Sans:300,400,500,600,700,800|PT+Mono:300,400,500,600,700" rel="stylesheet" />
-  <link href="{{asset('css/nucleo-icons.css')}}" rel="stylesheet" />
-  <link href="{{asset('css/nucleo-svg.css')}}" rel="stylesheet" />
-  <script src="https://kit.fontawesome.com/349ee9c857.js" crossorigin="anonymous"></script>
-  <link href="{{asset('css/nucleo-svg.css')}}" rel="stylesheet" />
-  <link id="pagestyle" href="{{ asset('css/corporate-ui-dashboard.css?v=1.0.0') }}" rel="stylesheet" />
-</head>
+@section('content')
+<body class="g-sidenav-show  bg-gray-100">
 
-<body class="">
+    <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+      <!-- Navbar -->
+      <nav class="navbar navbar-main navbar-expand-lg mx-5 px-0 shadow-none rounded" id="navbarBlur" navbar-scroll="true">
+        <div class="container-fluid py-1 px-2">
+          <nav aria-label="breadcrumb">
+            <h6 class="font-weight-bold mb-0">Dashboard</h6>
+          </nav>
+          <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
+            <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+            </div>
+            <ul class="navbar-nav  justify-content-end">
+              <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
+                <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav">
+                  <div class="sidenav-toggler-inner">
+                    <i class="sidenav-toggler-line"></i>
+                    <i class="sidenav-toggler-line"></i>
+                    <i class="sidenav-toggler-line"></i>
+                  </div>
+                </a>
+              </li>
+              <li class="nav-item ps-2 d-flex align-items-center">
+                  <div class="dropdown text-end">
+                      <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                          <img src="{{asset("img/team-2.jpg")}}" class="avatar avatar-sm" alt="avatar" />
+                      </a>
+                      <ul class="dropdown-menu text-small">
+                        <li><a class="dropdown-item" href="#">New project...</a></li>
+                        <li><a class="dropdown-item" href="#">Settings</a></li>
+                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="{{route('logout')}}">Sign out</a></li>
+                      </ul>
+                    </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <div class="container-fluid py-4 px-5">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="d-md-flex align-items-center mb-3 mx-2">
+              <div class="mb-md-0 mb-3">
+                <h3 class="font-weight-bold mb-0">
+                  @if (auth()->check())
+                     Olá, {{ auth()->user()->name }}!
+                  @endif
+          </h3>
+              </div>
+            </div>
+          </div>
+        </div>
 
   <main class="main-content  mt-0">
     <section>
@@ -69,12 +106,5 @@
       </div>
     </section>
   </main>
-  <script src="{{ asset('js/core/popper.min.js') }}"></script>
-<script src="{{ asset('js/core/bootstrap.min.js') }}"></script>
-<script src="{{asset("js/plugins/swiper-bundle.min.js")}}" type="text/javascript"></script>
 
-</body>
-
-</html>
-
-
+  @endsection
