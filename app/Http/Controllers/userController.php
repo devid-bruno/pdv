@@ -15,8 +15,12 @@ class userController extends Controller
         return view('login.login');
     }
     public function showregister(){
+        if(Auth::check()){
         $roles = Role::all();
         return view('dashboard.register', compact('roles'));
+        }
+        return redirect()->route('login')->withErrors(['login' => 'Favor, fazer login.']);
+
     }
 
     public function showdashboard(){

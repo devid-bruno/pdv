@@ -1,5 +1,5 @@
 @extends('layouts.header')
-
+@extends('layouts.menu.menulateral')
 @section('content')
 
 <body class="g-sidenav-show  bg-gray-100">
