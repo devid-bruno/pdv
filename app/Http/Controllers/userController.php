@@ -17,7 +17,8 @@ class userController extends Controller
     public function showregister(){
         if(Auth::check()){
         $roles = Role::all();
-        return view('dashboard.register', compact('roles'));
+        $users = User::all();
+        return view('dashboard.register', compact('roles', 'users'));
         }
         return redirect()->route('login')->withErrors(['login' => 'Favor, fazer login.']);
 
@@ -64,7 +65,7 @@ class userController extends Controller
             $user->roles()->attach($role);
         });
 
-        return redirect()->route('login')->with('success', 'Cadastro realizado com sucesso. Faça login para acessar sua conta.');
+        return redirect()->route('register')->with('success', 'Cadastro realizado com sucesso. Faça login para acessar sua conta.');
     }
 
     public function logout(Request $request)
@@ -74,5 +75,57 @@ class userController extends Controller
         $request->session()->regenerateToken();
         return redirect('/');
     }
+
+    public function destroy($id){
+    $user = User::findOrFail($id);
+
+    $user->delete();
+
+    return redirect()->route('register')->with('success', 'Usuário excluído com sucesso!');
+    }
+
+    public function edit($id)
+{
+    // Busca o usuário pelo id
+    $user = User::findOrFail($id);
+
+    $roles = Role::all();
+
+    // Retorna a view de edição do usuário com o usuário encontrado
+    return view('dashboard.edit', compact('user', 'roles'));
+}
+
+public function update(Request $request, $id)
+{
+    // Busca o usuário pelo id
+    $user = User::findOrFail($id);
+
+    // Valida os dados do formulário
+    $validatedData = $request->validate([
+        'name' => 'required|max:255',
+        'email' => 'required|email|unique:users,email,'.$user->id,
+        'password' => 'nullable|min:6|confirmed',
+        'role_id' => 'required|integer',
+    ]);
+
+    // Atualiza as informações do usuário
+    $user->name = $validatedData['name'];
+    $user->email = $validatedData['email'];
+
+    if (!empty($validatedData['password'])) {
+        $user->password = Hash::make($validatedData['password']);
+    }
+// Remove a associação atual do usuário com a role
+$user->roles()->detach();
+
+// Adiciona a nova associação do usuário com a role
+$role = Role::findOrFail($validatedData['role_id']);
+$user->roles()->attach($role);
+
+$user->save();
+
+    // Redireciona para a página de listagem de usuários com mensagem de sucesso
+    return redirect()->route('register')->with('success', 'Usuário atualizado com sucesso!');
+}
 
 }
