@@ -62,12 +62,12 @@
             <div class="row g-5">
                 <div class="col-md-7 col-lg-8">
                     <h4 class="mb-3">Informações do produto</h4>
-                    <form class="needs-validation" method="POST" action="{{route('addprodutos')}}">
+                    <form class="needs-validation" method="POST" action="{{route('add.produtos')}}">
                         @csrf
                         <div class="row g-3">
                             <div class="col-sm-6">
                                 <label for="firstName" class="form-label">Nome Produto</label>
-                                <input type="text" class="form-control" id="firstName" placeholder="" value=""
+                                <input type="text" class="form-control" id="firstName" name="nome_produto"
                                     required>
                                 <div class="invalid-feedback">
                                     Valid first name is required.
@@ -77,9 +77,14 @@
                             <div class="col-sm-6">
                                 <div class="col-md-5">
                                     <label for="country" class="form-label">Lista de Fornecedor</label>
-                                    <select class="form-select" id="country" required>
-                                        <option>United States</option>
-                                    </select>
+                                    <select name="fornecedor_id" id="fornecedor_id" class="form-control" required>
+                                        <option value="">Selecione uma opção</option>
+                                        @foreach($fornecedor as $fornecedores)
+                                          <option value="{{ $fornecedores->id }}" {{ $fornecedores->id == old('fornecedor_id') ? 'selected' : '' }}>
+                                            {{ $fornecedores->nome_fornecedor }}
+                                          </option>
+                                        @endforeach
+                                      </select>
                                     <div class="invalid-feedback">
                                         Please select a valid country.
                                     </div>
@@ -88,7 +93,7 @@
 
                             <div class="col-sm-6">
                                 <label for="firstName" class="form-label">Quantidade</label>
-                                <input type="text" class="form-control" id="firstName" placeholder="" value=""
+                                <input type="text" name="quantidade" class="form-control" id="firstName"
                                     required>
                                 <div class="invalid-feedback">
                                     Valid first name is required.
@@ -97,7 +102,7 @@
 
                             <div class="col-sm-6">
                                 <label for="firstName" class="form-label">Marca</label>
-                                <input type="text" class="form-control" id="firstName" placeholder="" value=""
+                                <input type="text" name="marca" class="form-control" id="firstName"
                                     required>
                                 <div class="invalid-feedback">
                                     Valid first name is required.
@@ -105,7 +110,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <label for="firstName" class="form-label">Descrição</label>
-                                <input type="text" class="form-control" id="firstName" placeholder="" value=""
+                                <input type="text" name="descricao" class="form-control" id="firstName" placeholder="" value=""
                                     required>
                                 <div class="invalid-feedback">
                                     Valid first name is required.
@@ -113,7 +118,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <label for="firstName" class="form-label">Tipo de entrega feita pelo Fornecedor</label>
-                                <input type="text" class="form-control" id="firstName" placeholder="" value=""
+                                <input type="text" name="tipo_entrega" class="form-control" id="firstName" placeholder="" value=""
                                     required>
                                 <div class="invalid-feedback">
                                     Valid first name is required.
@@ -121,33 +126,26 @@
                             </div>
                         <hr class="my-4">
                         <div class="py-5 text-center">
-                            <h2>Forma de pagamento que foi efetuado ao Fornecedor: (nome fornecedor)</h2>
+                            <h2>Forma de pagamento que foi efetuado ao Fornecedor</h2>
                         </div>
 
                         <hr class="my-4">
 
                         <div class="my-3">
-                            <div class="form-check">
-                                <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked
+                            <div class="col-sm-6">
+                                <label for="firstName" class="form-label">Tipo de pagamento feita ao Fornecedor</label>
+                                <input type="text" name="tipo_pagamento" class="form-control" id="firstName" placeholder="" value=""
                                     required>
-                                <label class="form-check-label" for="credit">Cartão de crédito</label>
-                            </div>
-                            <div class="form-check">
-                                <input id="paypal" name="paymentMethod" type="radio" class="form-check-input"
-                                    required>
-                                <label class="form-check-label" for="paypal">Pix</label>
-                            </div>
-                            <div class="form-check">
-                                <input id="paypal" name="paymentMethod" type="radio" class="form-check-input"
-                                    required>
-                                <label class="form-check-label" for="paypal">Boleto</label>
+                                <div class="invalid-feedback">
+                                    Valid first name is required.
+                                </div>
                             </div>
                         </div>
 
                         <div class="row gy-3">
                             <div class="col-sm-6">
                                 <label for="firstName" class="form-label">Valor unitário</label>
-                                <input type="text" class="form-control" id="firstName" placeholder="" value=""
+                                <input type="text" name="valor_unitario" class="form-control" id="firstName" placeholder="" value=""
                                     required>
                                 <div class="invalid-feedback">
                                     Valid first name is required.
@@ -156,7 +154,7 @@
 
                             <div class="col-sm-6">
                                 <label for="firstName" class="form-label">Valor total</label>
-                                <input type="text" class="form-control" id="firstName" placeholder="" value=""
+                                <input type="text" name="valor_total" class="form-control" id="firstName" placeholder="" value=""
                                     required>
                                 <div class="invalid-feedback">
                                     Valid first name is required.

@@ -23,7 +23,13 @@ Route::get('/estoque', [estoqueController::class, 'showestoque'])->name('estoque
 Route::get('/produtos', [produtosController::class, 'showprodutos'])->name('produtos')->middleware(Authenticate::class);
 Route::get('/addprodutos', [produtosController::class, 'showaddprodutos'])->name('addprodutos')->middleware(Authenticate::class);
 
-Route::post('/produtostore', [produtosController::class, 'storeproduto'])->name('storeproduct');
+Route::post('/produtostore', [produtosController::class, 'storeproduto'])->name('add.produtos');
+
+
+Route::get('/teste', [produtosController::class, 'showteste'])->name('teste');
+Route::post('/teste', [produtosController::class, 'teste'])->name('add.teste');
+
+
 Route::post('/login', [userController::class, 'login'])->name('login.submit');
 Route::post('/registro', [userController::class, 'register'])->name('login.register');
 

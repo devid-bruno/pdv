@@ -20,7 +20,10 @@ class ProdutoSeeder extends Seeder
             'quantidade' => 1,
             'marca' => 'Nassau',
             'descricao' => 'Cimento nassau 50kg',
-            'tipo_entrega' => 'caminhao'
+            'tipo_entrega' => 'caminhao',
+            'tipo_pagamento' => 'Pix',
+            'valor_unitario' => '34,50',
+            'valor_total' => '34,50'
         ]);
     }
 }
