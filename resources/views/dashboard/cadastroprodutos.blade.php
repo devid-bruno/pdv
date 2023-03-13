@@ -93,7 +93,7 @@
 
                             <div class="col-sm-6">
                                 <label for="firstName" class="form-label">Quantidade</label>
-                                <input type="text" name="quantidade" class="form-control" id="firstName"
+                                <input type="number" name="quantidade" class="form-control" id="firstName"
                                     required>
                                 <div class="invalid-feedback">
                                     Valid first name is required.

@@ -2,8 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\userController;
-use App\Http\Controllers\estoqueController;
-use App\Http\Controllers\produtosController;
+use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\ProdutoController;
+use App\Http\Controllers\FornecedorController;
 use App\Http\Middleware\Authenticate;
 /*
 |--------------------------------------------------------------------------
@@ -17,26 +18,23 @@ use App\Http\Middleware\Authenticate;
 */
 
 Route::get('/', [userController::class, 'showlogin'])->name('login');
-Route::get('/register', [userController::class, 'showregister'])->name('register');
-Route::get('/estoque', [estoqueController::class, 'showestoque'])->name('estoque')->middleware(Authenticate::class);
-
-Route::get('/produtos', [produtosController::class, 'showprodutos'])->name('produtos')->middleware(Authenticate::class);
-Route::get('/addprodutos', [produtosController::class, 'showaddprodutos'])->name('addprodutos')->middleware(Authenticate::class);
-
-Route::post('/produtostore', [produtosController::class, 'storeproduto'])->name('add.produtos');
-
-
-Route::get('/teste', [produtosController::class, 'showteste'])->name('teste');
-Route::post('/teste', [produtosController::class, 'teste'])->name('add.teste');
-
-
 Route::post('/login', [userController::class, 'login'])->name('login.submit');
-Route::post('/registro', [userController::class, 'register'])->name('login.register');
 
 Route::get('/dashboard', [userController::class, 'showdashboard'])->name('home');
-Route::get('/logout', [userController::class, 'logout'])->name('logout');
+Route::get('/users', [userController::class, 'showusers'])->name('users');
 
-Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+Route::post('/registro', [userController::class, 'register'])->name('users.register');
+
+Route::get('/logout', [userController::class, 'logout'])->name('logout');
 
 Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
 Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
+Route::delete('/users/{id}', [userController::class, 'destroy'])->name('users.destroy');
+
+
+Route::get('/categoria', [CategoriaController::class, 'index'])->name('showcategoria');
+Route::get('/adicionarcategoria', [CategoriaController::class, 'create'])->name('categoria.adicionar');
+Route::post('savecategoria', [CategoriaController::class, 'store'])->name('categoria.criar');
+
+Route::get('/adicionarfornecdedor', [FornecedorController::class, 'create'])->name('produto.fornecedor');
+Route::post('/fornecedoradicionar', [FornecedorController::class, 'store'])->name('create.fornecedor');

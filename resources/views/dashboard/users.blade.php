@@ -96,7 +96,7 @@
                                                         <p class="mb-0">Enter your email and password to register</p>
                                                     </div>
                                                     <div class="pb-3 card-body">
-                                                        <form method="post" action="{{ route('login.register') }}">
+                                                        <form method="post" action="{{route('users.register')}}">
                                                             @csrf
                                                             <label>Nome</label>
                                                             <div class="mb-3">
