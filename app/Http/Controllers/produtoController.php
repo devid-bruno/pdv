@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Fornecedor;
 
 class produtoController extends Controller
 {
@@ -11,7 +12,7 @@ class produtoController extends Controller
      */
     public function index()
     {
-        return view('dashboard.produto.index');
+        return view('dashboard.produto.listaproduto');
     }
 
     /**
@@ -19,7 +20,8 @@ class produtoController extends Controller
      */
     public function create()
     {
-        //
+        $fornecedores = Fornecedor::all();
+        return view('dashboard.produto.createproduto', compact('fornecedores'));
     }
 
     /**
