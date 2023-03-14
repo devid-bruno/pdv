@@ -19,7 +19,12 @@ return new class extends Migration
             $table->string('descricao');
             $table->string('cnpj');
             $table->string('endereco');
+            $table->unsignedBigInteger('categoria_id');
             $table->timestamps();
+            $table->foreign('categoria_id')
+                  ->references('id')
+                  ->on('categorias')
+                  ->onDelete('cascade');
         });
     }
 

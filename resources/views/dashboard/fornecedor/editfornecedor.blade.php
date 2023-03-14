@@ -73,7 +73,7 @@
                                         <div class="form-group">
                                             <label>Selecione Categoria para o Fornecedor</label>
                                             <div class="input-group">
-                                                <select class="form-select" name="categoria_id" id="categoria_id">
+                                                <select class="form-select" name="categoria_id">
                                                     @foreach ($categorias as $categoria)
                                                         <option value="{{ $categoria->id }}">
                                                             {{ $categoria->categoria }}</option>

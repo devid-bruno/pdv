@@ -31,7 +31,7 @@ class FornecedorController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = $request->validate([
+        $request->validate([
             'nome' => 'required|string|unique:fornecedores,nome,NULL,id',
             'email' => 'required|email|unique:fornecedores,email,NULL,id',
             'telefone' => 'required|string|unique:fornecedores,telefone,NULL,id',
@@ -41,20 +41,22 @@ class FornecedorController extends Controller
             'categoria_id' => 'required|integer'
         ]);
 
+        $categoria_id =  $request->input('categoria_id', 1);
         $fornecedor = new Fornecedor([
             'nome' => $request->input('nome'),
             'email' => $request->input('email'),
             'telefone' => $request->input('telefone'),
             'descricao' => $request->input('descricao'),
             'cnpj' => $request->input('cnpj'),
-            'endereco' => $request->input('endereco')
+            'endereco' => $request->input('endereco'),
+            'categoria_id' =>$categoria_id
         ]);
 
-        $categoria_id = Categoria::findOrFail($request->input('categoria_id'));
+        $categoria = Categoria::findOrFail($request->input('categoria_id'));
 
-        DB::transaction(function () use ($fornecedor, $categoria_id) {
+        DB::transaction(function () use ($fornecedor, $categoria) {
             $fornecedor->save();
-            $fornecedor->categorias()->attach($categoria_id);
+            $fornecedor->categorias()->attach($categoria);
         });
 
         return redirect()->route('produto.fornecedor');
@@ -81,20 +83,25 @@ class FornecedorController extends Controller
      */
     public function update(Request $request, $id) {
         $fornecedor = Fornecedor::findOrFail($id);
-        $fornecedor->nome = $request->input('nome');
-        $fornecedor->email = $request->input('email');
-        $fornecedor->telefone = $request->input('telefone');
-        $fornecedor->descricao = $request->input('descricao');
-        $fornecedor->cnpj = $request->input('cnpj');
-        $fornecedor->endereco = $request->input('endereco');
 
-        $categorias = $request->input('categorias'); // Assume que o formulário envia as categorias selecionadas como um array
+        $validatedData = $request->validate([
+            'nome' => 'required|max:255',
+            'email' => 'required|email|unique:fornecedores,email,'.$fornecedor->id,
+            'telefone' => 'nullable|min:6',
+            'endereco' => 'required',
+            'descricao' => 'required',
+            'cnpj' => 'required',
+            'categoria_id' => 'required|integer',
+        ]);
 
-        $fornecedor->categorias()->sync($categorias); // Atualiza as categorias do fornecedor
+        $fornecedor->categorias()->detach();
+        $categorias = Categoria::findOrFail($validatedData['categoria_id']);
+
+        $fornecedor->categorias()->attach($categorias);
 
         $fornecedor->save();
 
-        return redirect()->route('showcategoria');
+        return redirect()->route('showcategoria')->with('success', 'Usuário atualizado com sucesso!');
     }
 
 

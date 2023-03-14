@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\fornecedorController;
+use App\Http\Controllers\produtoController;
 use App\Http\Middleware\Authenticate;
 /*
 |--------------------------------------------------------------------------
@@ -39,4 +40,6 @@ Route::delete('/categoria/{id}', [CategoriaController::class, 'destroy'])->name(
 
 Route::get('/adicionarfornecdedor', [fornecedorController::class, 'create'])->name('produto.fornecedor');
 Route::post('/fornecedoradicionar', [fornecedorController::class, 'store'])->name('create.fornecedor');
-Route::put('/fornecedor/{id}', [fornecedorController::class, 'update'])->name('update.fornecedor');
+
+
+Route::get('/produtos', [produtoController::class, 'index'])->name('index.produto');

@@ -53,7 +53,7 @@
                             <div class="card-header border-bottom pb-0">
                                 <div class="d-sm-flex align-items-center mb-3">
                                     <div>
-                                        <h6 class="font-weight-semibold text-lg mb-0">Estoque</h6>
+                                        <h6 class="font-weight-semibold text-lg mb-0">Produto</h6>
                                     </div>
                                     <div class="ms-auto d-flex">
                                         <div class="input-group input-group-sm ms-auto me-2">
@@ -88,26 +88,26 @@
                                     <table class="table align-items-center justify-content-center mb-0">
                                         <thead class="bg-gray-100">
                                             <tr>
-                                                <th class="text-secondary text-xs font-weight-semibold opacity-7">Categoria
+                                                <th class="text-secondary text-xs font-weight-semibold opacity-7">Produto
                                                 </th>
                                                 <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">
-                                                    Fornecedor</th>
+                                                    Categoria</th>
                                                 <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Mais
                                                     Informações</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                @foreach ($categorias as $categoria )
-                                                     <td>
+
+                                                <td>
                                                     <div class="d-flex px-2">
                                                         <div class="my-auto">
-                                                            <h6 class="mb-0 text-sm">{{$categoria->categoria}}</h6>
+                                                            <h6 class="mb-0 text-sm"></h6>
                                                         </div>
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <p class="text-sm font-weight-normal mb-0">{{$categoria->fornecedores->first()->nome ?? ''}}</p>
+                                                    <p class="text-sm font-weight-normal mb-0"></p>
                                                 </td>
                                                 <td>
                                                     <button type="button" class="btn btn-dark btn-icon px-3">
@@ -119,9 +119,7 @@
                                                         data-bs-target="#exampleModal">
                                                         <i class="fa-sharp fa-solid fa-eye"></i>
                                                     </button>
-                                                    <form action="{{ route('categoria.destroy', $categoria->id) }}" method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
+
                                                         <button type="submit" class="btn btn-dark btn-icon px-3">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="14"
                                                                 height="14" fill="none" viewBox="0 0 24 24"
@@ -131,7 +129,6 @@
                                                                 </path>
                                                             </svg>
                                                         </button>
-                                                    </form>
                                                     <!-- Modal -->
                                                     <div class="modal fade" id="exampleModal" tabindex="-1"
                                                         role="dialog" aria-labelledby="exampleModalLabel"
@@ -159,34 +156,8 @@
                                                     </div>
                                                 </td>
                                             </tr>
-                                            @endforeach
                                         </tbody>
                                     </table>
-                                </div>
-                                <div class="border-top py-3 px-3 d-flex align-items-center">
-                                    <button class="btn btn-sm btn-white d-sm-block d-none mb-0">Previous</button>
-                                    <nav aria-label="..." class="ms-auto">
-                                        <ul class="pagination pagination-light mb-0">
-                                            <li class="page-item active" aria-current="page">
-                                                <span class="page-link font-weight-bold">1</span>
-                                            </li>
-                                            <li class="page-item"><a class="page-link border-0 font-weight-bold"
-                                                    href="javascript:;">2</a></li>
-                                            <li class="page-item"><a
-                                                    class="page-link border-0 font-weight-bold d-sm-inline-flex d-none"
-                                                    href="javascript:;">3</a></li>
-                                            <li class="page-item"><a class="page-link border-0 font-weight-bold"
-                                                    href="javascript:;">...</a></li>
-                                            <li class="page-item"><a
-                                                    class="page-link border-0 font-weight-bold d-sm-inline-flex d-none"
-                                                    href="javascript:;">8</a></li>
-                                            <li class="page-item"><a class="page-link border-0 font-weight-bold"
-                                                    href="javascript:;">9</a></li>
-                                            <li class="page-item"><a class="page-link border-0 font-weight-bold"
-                                                    href="javascript:;">10</a></li>
-                                        </ul>
-                                    </nav>
-                                    <button class="btn btn-sm btn-white d-sm-block d-none mb-0 ms-auto">Next</button>
                                 </div>
                             </div>
                         </div>
