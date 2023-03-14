@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categoria;
+use App\Models\Fornecedor;
 use Illuminate\Http\Request;
 
 class CategoriaController extends Controller
@@ -12,7 +13,9 @@ class CategoriaController extends Controller
      */
     public function index()
     {
-        return view('dashboard.categoria.categoria');
+        $fornecedores = Fornecedor::all();
+        $categorias = Categoria::all();
+        return view('dashboard.categoria.categoria', compact('fornecedores', 'categorias'));
     }
 
     /**
@@ -68,8 +71,12 @@ class CategoriaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Categoria $categoria)
+    public function destroy(Categoria $categoria, $id)
     {
-        //
+        $categoria = Categoria::findOrFail($id);
+
+    $categoria->delete();
+
+    return redirect()->route('showcategoria')->with('success', 'Usuário excluído com sucesso!');
     }
 }

@@ -206,8 +206,9 @@
                                                             </path>
                                                         </svg>
                                                     </button>
+                                                </form>
                                             </div>
-                                            </form>
+
 
                                         </td>
                                     </tr>

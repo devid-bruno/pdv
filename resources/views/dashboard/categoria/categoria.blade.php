@@ -94,50 +94,49 @@
                                     <table class="table align-items-center justify-content-center mb-0">
                                         <thead class="bg-gray-100">
                                             <tr>
-                                                <th class="text-secondary text-xs font-weight-semibold opacity-7">Produto
+                                                <th class="text-secondary text-xs font-weight-semibold opacity-7">Categoria
                                                 </th>
                                                 <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">
                                                     Fornecedor</th>
-                                                <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Marca
-                                                </th>
-                                                <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Valor
-                                                    Unitário</th>
-                                                <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Valor
-                                                    Total</th>
                                                 <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Mais
                                                     Informações</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
+                                                @foreach ($categorias as $categoria )
                                                 <td>
                                                     <div class="d-flex px-2">
                                                         <div class="my-auto">
-                                                            <h6 class="mb-0 text-sm">Cimento</h6>
+                                                            <h6 class="mb-0 text-sm">{{$categoria->categoria}}</h6>
                                                         </div>
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <p class="text-sm font-weight-normal mb-0">ABC Construções</p>
-                                                </td>
-                                                <td>
-                                                    <span class="text-sm font-weight-normal">Nassau</span>
-                                                </td>
-                                                <td>
-                                                    <h6 class="mb-0 text-sm">30,90</h6>
+                                                    <p class="text-sm font-weight-normal mb-0">{{$categoria->fornecedores->first()->nome ?? 'Sem papel definido'}}</p>
                                                 </td>
                                                 <td class="align-middle">
-                                                    <div class="d-flex">
-                                                        <div class="ms-2">
-                                                            <p class="text-dark text-sm mb-0">30,90</p>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td class="align-middle">
+                                                    <button type="button" class="btn btn-dark btn-icon px-3">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
+                                                        </svg>
+                                                    </button>
+
+
                                                     <button type="button" class="btn btn-dark" data-bs-toggle="modal"
                                                         data-bs-target="#exampleModal">
                                                         <i class="fa-sharp fa-solid fa-eye"></i>
                                                     </button>
+                                                    <form action="{{ route('categoria.destroy', $categoria->id) }}" method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="button" class="btn btn-dark btn-icon px-3">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                                            </svg>
+                                                        </button>
+                                                    </form>
+
                                                     <!-- Modal -->
                                                     <div class="modal fade" id="exampleModal" tabindex="-1"
                                                         role="dialog" aria-labelledby="exampleModalLabel"
@@ -165,6 +164,7 @@
                                                     </div>
                                                 </td>
                                             </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>

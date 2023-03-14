@@ -35,6 +35,7 @@ Route::delete('/users/{id}', [userController::class, 'destroy'])->name('users.de
 Route::get('/categoria', [CategoriaController::class, 'index'])->name('showcategoria');
 Route::get('/adicionarcategoria', [CategoriaController::class, 'create'])->name('categoria.adicionar');
 Route::post('savecategoria', [CategoriaController::class, 'store'])->name('categoria.criar');
+Route::delete('/categoria/{id}', [CategoriaController::class, 'destroy'])->name('categoria.destroy');
 
 Route::get('/adicionarfornecdedor', [FornecedorController::class, 'create'])->name('produto.fornecedor');
 Route::post('/fornecedoradicionar', [FornecedorController::class, 'store'])->name('create.fornecedor');
