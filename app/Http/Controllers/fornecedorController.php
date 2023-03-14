@@ -79,10 +79,24 @@ class FornecedorController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Fornecedor $fornecedor)
-    {
-        //
+    public function update(Request $request, $id) {
+        $fornecedor = Fornecedor::findOrFail($id);
+        $fornecedor->nome = $request->input('nome');
+        $fornecedor->email = $request->input('email');
+        $fornecedor->telefone = $request->input('telefone');
+        $fornecedor->descricao = $request->input('descricao');
+        $fornecedor->cnpj = $request->input('cnpj');
+        $fornecedor->endereco = $request->input('endereco');
+
+        $categorias = $request->input('categorias'); // Assume que o formulário envia as categorias selecionadas como um array
+
+        $fornecedor->categorias()->sync($categorias); // Atualiza as categorias do fornecedor
+
+        $fornecedor->save();
+
+        return redirect()->route('showcategoria');
     }
+
 
     /**
      * Remove the specified resource from storage.

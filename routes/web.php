@@ -36,5 +36,7 @@ Route::get('/adicionarcategoria', [CategoriaController::class, 'create'])->name(
 Route::post('savecategoria', [CategoriaController::class, 'store'])->name('categoria.criar');
 Route::delete('/categoria/{id}', [CategoriaController::class, 'destroy'])->name('categoria.destroy');
 
+
 Route::get('/adicionarfornecdedor', [fornecedorController::class, 'create'])->name('produto.fornecedor');
 Route::post('/fornecedoradicionar', [fornecedorController::class, 'store'])->name('create.fornecedor');
+Route::put('/fornecedor/{id}', [fornecedorController::class, 'update'])->name('update.fornecedor');
