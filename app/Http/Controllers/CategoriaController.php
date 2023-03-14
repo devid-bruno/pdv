@@ -31,7 +31,7 @@ class CategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = $request->validate([
+        $request->validate([
             'categoria' => 'required|string|max:255|unique:categorias,categoria,NULL,id'
         ], [
             'categoria.required' => 'O campo categoria é obrigatório.',
@@ -71,7 +71,7 @@ class CategoriaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Categoria $categoria, $id)
+    public function destroy($id)
     {
         $categoria = Categoria::findOrFail($id);
 

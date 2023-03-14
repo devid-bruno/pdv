@@ -3,8 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\CategoriaController;
-use App\Http\Controllers\ProdutoController;
-use App\Http\Controllers\FornecedorController;
+use App\Http\Controllers\fornecedorController;
 use App\Http\Middleware\Authenticate;
 /*
 |--------------------------------------------------------------------------
@@ -37,5 +36,5 @@ Route::get('/adicionarcategoria', [CategoriaController::class, 'create'])->name(
 Route::post('savecategoria', [CategoriaController::class, 'store'])->name('categoria.criar');
 Route::delete('/categoria/{id}', [CategoriaController::class, 'destroy'])->name('categoria.destroy');
 
-Route::get('/adicionarfornecdedor', [FornecedorController::class, 'create'])->name('produto.fornecedor');
-Route::post('/fornecedoradicionar', [FornecedorController::class, 'store'])->name('create.fornecedor');
+Route::get('/adicionarfornecdedor', [fornecedorController::class, 'create'])->name('produto.fornecedor');
+Route::post('/fornecedoradicionar', [fornecedorController::class, 'store'])->name('create.fornecedor');
