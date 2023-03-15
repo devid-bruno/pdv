@@ -5,6 +5,7 @@ use App\Http\Controllers\userController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\fornecedorController;
 use App\Http\Controllers\produtoController;
+use App\Http\Controllers\vendasController;
 use App\Http\Middleware\Authenticate;
 /*
 |--------------------------------------------------------------------------
@@ -27,21 +28,24 @@ Route::post('/registro', [userController::class, 'register'])->name('users.regis
 
 Route::get('/logout', [userController::class, 'logout'])->name('logout');
 
-Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
-Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
-Route::delete('/users/{id}', [userController::class, 'destroy'])->name('users.destroy');
+Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit')->middleware('auth');
+Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update')->middleware('auth');
+Route::delete('/users/{id}', [userController::class, 'destroy'])->name('users.destroy')->middleware('auth');
 
 
-Route::get('/categoria', [CategoriaController::class, 'index'])->name('showcategoria');
-Route::get('/adicionarcategoria', [CategoriaController::class, 'create'])->name('categoria.adicionar');
-Route::post('savecategoria', [CategoriaController::class, 'store'])->name('categoria.criar');
-Route::delete('/categoria/{id}', [CategoriaController::class, 'destroy'])->name('categoria.destroy');
+Route::get('/categoria', [CategoriaController::class, 'index'])->name('showcategoria')->middleware('auth');
+Route::get('/adicionarcategoria', [CategoriaController::class, 'create'])->name('categoria.adicionar')->middleware('auth');
+Route::post('savecategoria', [CategoriaController::class, 'store'])->name('categoria.criar')->middleware('auth');
+Route::delete('/categoria/{id}', [CategoriaController::class, 'destroy'])->name('categoria.destroy')->middleware('auth');
 
 
-Route::get('/adicionarfornecdedor', [fornecedorController::class, 'create'])->name('produto.fornecedor');
-Route::post('/fornecedoradicionar', [fornecedorController::class, 'store'])->name('create.fornecedor');
+Route::get('/adicionarfornecdedor', [fornecedorController::class, 'create'])->name('produto.fornecedor')->middleware('auth');
+Route::post('/fornecedoradicionar', [fornecedorController::class, 'store'])->name('create.fornecedor')->middleware('auth');
 
 
-Route::get('/produtos', [produtoController::class, 'index'])->name('index.produto');
-Route::get('/addprodutos', [produtoController::class, 'create'])->name('create.produto');
-Route::post('/addprodutos', [produtoController::class, 'store'])->name('store.produto');
+Route::get('/produtos', [produtoController::class, 'index'])->name('index.produto')->middleware('auth');
+Route::get('/addprodutos', [produtoController::class, 'create'])->name('create.produto')->middleware('auth');
+Route::post('/addprodutos', [produtoController::class, 'store'])->name('store.produto')->middleware('auth');
+
+
+Route::get('/vendas', [vendasController::class, 'index'])->name('index.vendas')->middleware('auth');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Fornecedor;
 use App\Models\Produto;
+use App\Models\Estoque;
 use Illuminate\Support\Facades\DB;
 
 class produtoController extends Controller
@@ -43,6 +44,7 @@ class produtoController extends Controller
         ]);
 
         $fornecedor_id = $request->input('fornecedor_id', 1);
+
         $produtos = new Produto([
             'nome' => $request->input('nome'),
             'descricao' => $request->input('descricao'),
@@ -54,9 +56,17 @@ class produtoController extends Controller
 
         $fornecedor = Fornecedor::findOrFail($request->input('fornecedor_id'));
 
-        DB::transaction(function () use ($produtos, $fornecedor_id) {
+        DB::transaction(function () use ($produtos, $fornecedor, $request) {
             $produtos->save();
-            $produtos->fornecedor()->attach($fornecedor_id);
+
+            $estoque = new Estoque([
+                'produto_id' => $produtos->id,
+                'quantidade' => $request->input('quantidade')
+            ]);
+
+            $estoque->save();
+
+            $produtos->fornecedor()->attach($fornecedor);
         });
 
         return redirect()->route('index.produto');
