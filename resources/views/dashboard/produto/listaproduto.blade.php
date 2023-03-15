@@ -96,16 +96,16 @@
                                         </thead>
                                         <tbody>
                                             <tr>
-
+                                                @foreach ($produtos as $produto)
                                                      <td>
                                                     <div class="d-flex px-2">
                                                         <div class="my-auto">
-                                                            <h6 class="mb-0 text-sm"></h6>
+                                                            <h6 class="mb-0 text-sm">{{$produto->nome}}</h6>
                                                         </div>
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <p class="text-sm font-weight-normal mb-0"></p>
+                                                    <p class="text-sm font-weight-normal mb-0">{{ $produto->fornecedor->first()->nome ?? 'Sem papel definido' }}</p>
                                                 </td>
                                                 <td>
                                                     <button type="button" class="btn btn-dark btn-icon px-3">
@@ -153,6 +153,7 @@
                                                         </div>
                                                     </div>
                                                 </td>
+                                                @endforeach
                                             </tr>
                                         </tbody>
                                     </table>

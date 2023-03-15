@@ -44,3 +44,4 @@ Route::post('/fornecedoradicionar', [fornecedorController::class, 'store'])->nam
 
 Route::get('/produtos', [produtoController::class, 'index'])->name('index.produto');
 Route::get('/addprodutos', [produtoController::class, 'create'])->name('create.produto');
+Route::post('/addprodutos', [produtoController::class, 'store'])->name('store.produto');
