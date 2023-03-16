@@ -39,7 +39,7 @@ class vendasController extends Controller
         'telefone_cliente' => 'required|string|max:20',
         'endereco_cliente' => 'required|string|max:255',
         'forma_pagamento' => 'required|string|max:255',
-        'quantidade' => 'required|integer|min:1',
+        'quantidade' => 'required|integer|min:1'
     ]);
 
     // Busca as informações do produto no banco de dados
