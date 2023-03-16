@@ -8,11 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class vendas extends Model
 {
     use HasFactory;
-    protected $table = 'vendas';
-    protected $fillable = ['nome_cliente', 'email_cliente', 'cpf_cnpj_cliente', 'telefone_cliente', 'endereco_cliente', 'forma_pagamento', 'quantidade', 'valor_total', 'estoque_id'];
 
-    public function fornecedor()
-     {
-         return $this->belongsToMany(Fornecedor::class);
-     }
+
+    public function cliente()
+    {
+        return $this->belongsTo(Cliente::class);
+    }
+    public function pedido()
+    {
+        return $this->belongsTo(Pedido::class);
+    }
 }

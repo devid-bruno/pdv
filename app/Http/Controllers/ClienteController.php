@@ -1,15 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Cliente;
+use App\Models\Pedido;
 use Illuminate\Http\Request;
-use App\Models\vendas;
-use App\Models\Estoque;
-use App\Models\Produto;
 use Illuminate\Support\Facades\DB;
 
-class vendasController extends Controller
+class ClienteController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -22,11 +19,9 @@ class vendasController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Request $request)
-    {
-        $produtos = Produto::all();
-        $clientes = Cliente::all();
-        return view('dashboard.vendas.index', compact('produtos', 'clientes'));
+    public function create()
+    {   $clientes = Cliente::all();
+        return view('dashboard.cliente.index', compact('clientes'));
     }
 
     /**
@@ -34,7 +29,19 @@ class vendasController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $validatedData = $request->validate([
+            'nome_cliente' => 'required|string',
+            'email_cliente' => 'required|string|email|unique:clientes',
+            'cpf_cnpj_cliente' => 'required|string|unique:clientes',
+            'telefone_cliente' => 'required|string',
+            'cep_cliente' => 'required|string',
+            'endereco_cliente' => 'required|string',
+        ]);
+
+        $cliente = new Cliente($validatedData);
+        $cliente->save();
+
+        return redirect()->route('index.cliente')->with('success', 'Cliente cadastrado com sucesso!');
     }
 
     /**

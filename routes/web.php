@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\userController;
+use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\fornecedorController;
 use App\Http\Controllers\produtoController;
@@ -48,4 +49,10 @@ Route::get('/addprodutos', [produtoController::class, 'create'])->name('create.p
 Route::post('/addprodutos', [produtoController::class, 'store'])->name('store.produto')->middleware('auth');
 
 
-Route::get('/vendas', [vendasController::class, 'index'])->name('index.vendas')->middleware('auth');
+Route::get('/vendas', [vendasController::class, 'create'])->name('index.vendas')->middleware('auth');
+Route::post('/vender', [vendasController::class, 'store'])->name('index.vender')->middleware('auth');
+
+
+
+Route::get('/cliente', [ClienteController::class, 'create'])->name('index.cliente')->middleware('auth');
+Route::post('/cadastrocliente', [ClienteController::class, 'store'])->name('index.cadastrado')->middleware('auth');

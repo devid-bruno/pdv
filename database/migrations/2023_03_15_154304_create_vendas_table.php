@@ -13,13 +13,10 @@ return new class extends Migration
     {
         Schema::create('vendas', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('estoque_id');
-            $table->foreign('estoque_id')->references('id')->on('estoques')->onDelete('cascade');
-            $table->string('nome_cliente');
-            $table->string('email_cliente');
-            $table->string('cpf_cnpj_cliente');
-            $table->string('telefone_cliente');
-            $table->string('endereco_cliente');
+            $table->unsignedBigInteger('cliente_id');
+            $table->unsignedBigInteger('produto_id');
+            $table->foreign('cliente_id')->references('id')->on('clientes')->onDelete('cascade');
+            $table->foreign('produto_id')->references('id')->on('produtos')->onDelete('cascade');
             $table->string('forma_pagamento');
             $table->integer('quantidade');
             $table->decimal('valor_total', 10, 2);

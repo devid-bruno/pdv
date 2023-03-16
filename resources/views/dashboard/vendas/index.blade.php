@@ -47,35 +47,22 @@
             </nav>
             <div class="container-fluid py-4 px-5">
                 <div class="pb-3 card-body">
-                    <form method="post" action="">
+                    <form method="post" action="{{route('index.vender')}}">
                         @csrf
                         <div class="container-fluid py-4 px-5">
-                            <form>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label>Nome Cliente</label>
-                                            <input type="text" name="nome_cliente" class="form-control" id="exampleFormControlInput1"
-                                                placeholder="Nome Cliente">
+                                            <label>Selecione o Cliente</label>
+                                            <select class="form-select" name="" id="">
+                                                @foreach ($clientes as $cliente)
+                                                <option value="{{$cliente->id}}">{{$cliente->nome_cliente}}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Email Cliente</label>
-                                            <input type="text" name="email_cliente" placeholder="Email Cliente" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>CPF / CNPJ</label>
-                                            <input type="text" name="cpf_cnpj_cliente" placeholder="CPF / CNPJ" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Telefone</label>
-                                            <input type="text" name="telefone_cliente" placeholder="Telefone" class="form-control">
-                                        </div>
+
                                     </div>
                                 </div>
                                 <div class="row">
@@ -84,7 +71,9 @@
                                             <label>Selecione o produto</label>
                                             <div class="input-group">
                                                 <select class="form-select" name="" id="">
-
+                                                    @foreach ($produtos as $produto)
+                                                    <option value="{{$produto->id}}">{{$produto->nome}}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>
@@ -99,6 +88,14 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
+                                            <label>Forma Pagamento</label>
+                                            <div class="input-group">
+                                                <input type="text" name="forma_pagamento" class="form-control" placeholder="Forma Pagamento">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
                                             <label>Quantidade</label>
                                             <div class="input-group">
                                                 <input type="text" name="estoque_id" class="form-control" placeholder="Quantidade">
@@ -106,29 +103,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>CEP</label>
-                                            <div class="input-group">
-                                                <input type="text"  class="form-control" placeholder="CEP">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Endereco</label>
-                                            <div class="input-group">
-                                                <input type="text" name="endereco_cliente" class="form-control" placeholder="">
-                                            </div>
-                                        </div>
-
-                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-dark">Cadastrar</button>
                                   </div>
-                            </form>
                         </div>
                     </form>
                 </div>

@@ -22,4 +22,10 @@ class Produto extends Model
      {
          return $this->belongsToMany(Fornecedor::class);
      }
+
+     public function pedidos()
+{
+    return $this->belongsToMany(Pedido::class)->withPivot('quantidade', 'preco');
+}
+
 }
