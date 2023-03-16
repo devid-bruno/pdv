@@ -53,6 +53,5 @@ Route::get('/vendas', [vendasController::class, 'create'])->name('index.vendas')
 Route::post('/vender', [vendasController::class, 'store'])->name('index.vender')->middleware('auth');
 
 
-
 Route::get('/cliente', [ClienteController::class, 'create'])->name('index.cliente')->middleware('auth');
 Route::post('/cadastrocliente', [ClienteController::class, 'store'])->name('index.cadastrado')->middleware('auth');
