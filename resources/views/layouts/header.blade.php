@@ -25,6 +25,36 @@
     </div>
     <div class="collapse navbar-collapse px-4  w-auto " id="sidenav-collapse-main">
         <ul class="list-unstyled ps-0">
+            <li class="mb-1">
+                <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
+                  Categorias
+                </button>
+                <div class="collapse show" id="home-collapse">
+                  <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                    <li><a href="{{route('categoria.lista')}}" class="link-dark d-inline-flex text-decoration-none rounded">Listar</a></li>
+                  </ul>
+                </div>
+                <div class="collapse show" id="home-collapse">
+                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                      <li><a href="{{route('categoria.adicionar')}}" class="link-dark d-inline-flex text-decoration-none rounded">Adicionar</a></li>
+                    </ul>
+                  </div>
+              </li>
+              <li class="mb-1">
+                <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
+                  Fornecedores
+                </button>
+                <div class="collapse show" id="home-collapse">
+                  <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                    <li><a href="{{route('fornecedores.lista')}}" class="link-dark d-inline-flex text-decoration-none rounded">Listar</a></li>
+                  </ul>
+                </div>
+                <div class="collapse show" id="home-collapse">
+                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                      <li><a href="{{route('fornecedores.adicionar')}}" class="link-dark d-inline-flex text-decoration-none rounded">Adicionar</a></li>
+                    </ul>
+                  </div>
+              </li>
         <li class="mb-1">
             <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
               Usuários
@@ -37,46 +67,11 @@
           </li>
           <li class="mb-1">
             <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
-              Estoque
+              Clientes
             </button>
             <div class="collapse show" id="home-collapse">
               <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                <li><a href="{{route('showcategoria')}}" class="link-dark d-inline-flex text-decoration-none rounded">Listar</a></li>
-
-              </ul>
-            </div>
-          </li>
-          <li class="mb-1">
-            <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
-              Produtos
-            </button>
-            <div class="collapse show" id="home-collapse">
-              <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                <li><a href="{{route('create.produto')}}" class="link-dark d-inline-flex text-decoration-none rounded">Adicionar Produto</a></li>
-                <li><a href="{{route('categoria.adicionar')}}" class="link-dark d-inline-flex text-decoration-none rounded">Adicionar categoria</a></li>
-                <li><a href="{{route('index.produto')}}" class="link-dark d-inline-flex text-decoration-none rounded">Listar</a></li>
-                <li><a href="{{route('produto.fornecedor')}}" class="link-dark d-inline-flex text-decoration-none rounded">Adicionar Fornecedor</a></li>
-              </ul>
-            </div>
-          </li>
-          <li class="mb-1">
-            <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
-              Vender
-            </button>
-            <div class="collapse show" id="home-collapse">
-              <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                <li><a href="{{route('index.vendas')}}" class="link-dark d-inline-flex text-decoration-none rounded">Adicionar venda</a></li>
-                <li><a href="" class="link-dark d-inline-flex text-decoration-none rounded">Listar vendas</a></li>
-              </ul>
-            </div>
-          </li>
-          <li class="mb-1">
-            <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
-              Cliente
-            </button>
-            <div class="collapse show" id="home-collapse">
-              <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                <li><a href="{{route('index.cliente')}}" class="link-dark d-inline-flex text-decoration-none rounded">Adicionar Cliente</a></li>
+                <li><a href="{{route('cliente.lista')}}" class="link-dark d-inline-flex text-decoration-none rounded">Listar</a></li>
               </ul>
             </div>
           </li>

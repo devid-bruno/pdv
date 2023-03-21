@@ -49,7 +49,7 @@
                 <div class="pb-3 card-body">
 
 
-                    <form method="post" action="{{ route('create.fornecedor') }}">
+                    <form method="post" action="{{ route('fornecedor.criar') }}">
                         @csrf
                         <div class="container-fluid py-4 px-5">
                             <form>

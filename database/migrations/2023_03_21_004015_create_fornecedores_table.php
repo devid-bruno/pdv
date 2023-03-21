@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('nome');
             $table->string('email');
             $table->string('telefone');
-            $table->string('descricao');
             $table->string('cnpj');
+            $table->string('descricao');
             $table->string('endereco');
             $table->unsignedBigInteger('categoria_id');
             $table->timestamps();

@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Http\Requests\StoreClienteRequest;
+use App\Http\Requests\UpdateClienteRequest;
 use App\Models\Cliente;
-use App\Models\Pedido;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class ClienteController extends Controller
 {
@@ -13,41 +13,30 @@ class ClienteController extends Controller
      */
     public function index()
     {
-
+        $clientes = Cliente::all();
+        return view('dashboard.cliente.index', compact('clientes'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
-    {   $clientes = Cliente::all();
-        return view('dashboard.cliente.index', compact('clientes'));
+    {
+        //
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreClienteRequest $request)
     {
-        $validatedData = $request->validate([
-            'nome_cliente' => 'required|string',
-            'email_cliente' => 'required|string|email|unique:clientes',
-            'cpf_cnpj_cliente' => 'required|string|unique:clientes',
-            'telefone_cliente' => 'required|string',
-            'cep_cliente' => 'required|string',
-            'endereco_cliente' => 'required|string',
-        ]);
-
-        $cliente = new Cliente($validatedData);
-        $cliente->save();
-
-        return redirect()->route('index.cliente')->with('success', 'Cliente cadastrado com sucesso!');
+        //
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Cliente $cliente)
     {
         //
     }
@@ -55,7 +44,7 @@ class ClienteController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Cliente $cliente)
     {
         //
     }
@@ -63,7 +52,7 @@ class ClienteController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateClienteRequest $request, Cliente $cliente)
     {
         //
     }
@@ -71,7 +60,7 @@ class ClienteController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Cliente $cliente)
     {
         //
     }

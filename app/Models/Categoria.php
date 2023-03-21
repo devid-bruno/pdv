@@ -4,18 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Categoria extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'categoria'
-    ];
+    protected $fillable = ['categoria'];
 
-    public function fornecedores()
+    public function fornecedores(): BelongsToMany
     {
-        return $this->belongsToMany(Fornecedor::class);
+        return $this->belongsToMany(Fornecedores::class);
     }
-
 }

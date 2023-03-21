@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreCategoriaRequest;
+use App\Http\Requests\UpdateCategoriaRequest;
 use App\Models\Categoria;
-use App\Models\Fornecedor;
+use App\Models\Fornecedores;
 use Illuminate\Http\Request;
 
 class CategoriaController extends Controller
@@ -13,7 +15,7 @@ class CategoriaController extends Controller
      */
     public function index()
     {
-        $fornecedores = Fornecedor::all();
+        $fornecedores = Fornecedores::all();
         $categorias = Categoria::all();
         return view('dashboard.categoria.categoria', compact('fornecedores', 'categorias'));
     }
@@ -23,7 +25,7 @@ class CategoriaController extends Controller
      */
     public function create()
     {
-        return view('dashboard.categoria.createCategoria');
+        return view('dashboard.categoria.adicionar');
     }
 
     /**
@@ -41,7 +43,7 @@ class CategoriaController extends Controller
         $category = new Categoria(['categoria' => $request->input('categoria')]);
         $category->save();
 
-        return redirect()->route('produto.fornecedor')->withErrors(['categoria' => 'Categoria já existente.']);
+        return redirect()->route('categoria.lista')->withErrors(['categoria' => 'Categoria já existente.']);
     }
 
     /**
@@ -63,7 +65,7 @@ class CategoriaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Categoria $categoria)
+    public function update(UpdateCategoriaRequest $request, Categoria $categoria)
     {
         //
     }
@@ -71,9 +73,9 @@ class CategoriaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy(Categoria $categoria, $id)
     {
-        $categoria = Categoria::findOrFail($id);
+    $categoria = Categoria::findOrFail($id);
 
     $categoria->delete();
 

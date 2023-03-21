@@ -49,7 +49,7 @@
                 <div class="pb-3 card-body">
 
 
-            <form method="post" action="{{route('categoria.criar')}}">
+            <form method="post" action="{{route('criar.categoria')}}">
                 @csrf
                 <div class="form-group">
                     <label for="example-text-input" class="form-control-label">Nome Categoria</label>

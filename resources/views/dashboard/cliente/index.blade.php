@@ -96,7 +96,7 @@
                                                         <p class="mb-0">Enter your email and password to register</p>
                                                     </div>
                                                     <div class="pb-3 card-body">
-                                                        <form method="post" action="{{route('index.cadastrado')}}">
+                                                        <form method="post" action="{{route('cliente.adicionar')}}">
                                                             @csrf
                                                             <label>Nome</label>
                                                             <div class="mb-3">
@@ -164,8 +164,6 @@
                             <tbody>
                                     <tr>
                                         @foreach ($clientes as $cliente)
-
-
                                         <td>
                                             <div class="d-flex px-2 py-1">
                                                 <div class="d-flex flex-column justify-content-center ms-1">
